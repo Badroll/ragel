@@ -79,11 +79,26 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   KEY `FK_barang_pengadaan` (`barang_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ragel.transaksi: 0 rows
+-- Dumping data for table ragel.transaksi: 1 rows
 /*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
 INSERT INTO `transaksi` (`id`, `kode`, `barang_id`, `tanggal`, `harga`, `jumlah`, `mitra`, `keterangan`) VALUES
 	(1, 'IN01', 2, '2024-01-21 00:00:00', 210000, 10, 'pt badrul', 'oke sip');
 /*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
+
+-- Dumping structure for table ragel.user
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `no_wa` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table ragel.user: 1 rows
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id`, `nama`, `password`, `no_wa`) VALUES
+	(1, 'Badrulaa', '$2y$10$LGgRopvxe0u/CuJl4YWLROq8Ap0mtTai84WeSaj1dXvCxZKYnd9nC', '6281215992673');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
