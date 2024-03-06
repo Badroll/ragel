@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Poliklinik - BK</title>
+		<title>Inventory Ragel</title>
 		<link rel="shortcut icon" type="image/png" href="{{ asset('assets/src/assets/images/logos/favicon.png') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/src/assets/css/styles.min.css') }}" />
 	</head>
@@ -19,7 +19,7 @@
 				<div>
 					<div class="brand-logo d-flex align-items-center justify-content-between">
 						<a href="#" class="text-nowrap logo-img">
-						<img src="{{ asset('assets/src/assets/images/logos/logo-pol.png') }}" width="180" alt="" />
+						<img src="{{ asset('assets/src/assets/images/logos/dark-logo.svg') }}" width="180" alt="" />
 						</a>
 						<div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
 							<i class="ti ti-x fs-8"></i>
@@ -52,7 +52,7 @@
 								<span class="hide-menu">TRANSAKSI</span>
 							</li>
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="{{ url('pengadaan') }}" aria-expanded="false">
+								<a class="sidebar-link" href="{{ url('transaksi') }}?type=in" aria-expanded="false">
 								<span>
 								<i class="ti ti-article"></i>
 								</span>
@@ -60,7 +60,7 @@
 								</a>
 							</li>
 							<li class="sidebar-item">
-								<a class="sidebar-link" href="{{ url('penjualan') }}" aria-expanded="false">
+								<a class="sidebar-link" href="{{ url('transaksi') }}?type=out" aria-expanded="false">
 								<span>
 								<i class="ti ti-article"></i>
 								</span>
@@ -79,7 +79,7 @@
 				<!--  Header Start -->
 				<header class="app-header">
 					<nav class="navbar navbar-expand-lg navbar-light">
-						<ul class="navbar-nav">
+						<!-- <ul class="navbar-nav">
 							<li class="nav-item d-block d-xl-none">
 								<a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
 								<i class="ti ti-menu-2"></i>
@@ -91,11 +91,13 @@
 									<div class="notification bg-primary rounded-circle"></div>
 								</a>
 							</li>
-						</ul>
+						</ul> -->
 						<div class="navbar-collapse justify-content-end px-0" id="navbarNav">
 							<ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
 								<li class="nav-item dropdown">
-									<a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+									<!-- <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+										aria-expanded="false"> -->
+									<a class="nav-link nav-icon-hover" href="{{ url('auth/profil') }}" id="drop2"
 										aria-expanded="false">
 									<img src="{{ asset('assets/src/assets/images/profile/user-1.jpg') }}" alt="" width="35" height="35" class="rounded-circle">
 									</a>

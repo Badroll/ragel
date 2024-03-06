@@ -22,16 +22,19 @@ USE `ragel`;
 -- Dumping structure for table ragel.barang
 CREATE TABLE IF NOT EXISTS `barang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `kategori` int(11) NOT NULL,
+  `kategori_id` int(11) NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `harga` int(11) NOT NULL,
   `keterangan` text NOT NULL,
+  `stok` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  KEY `FK_kategori_barang` (`kategori`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+  KEY `FK_kategori_barang` (`kategori_id`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ragel.barang: 0 rows
+-- Dumping data for table ragel.barang: 2 rows
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
+INSERT INTO `barang` (`id`, `kategori_id`, `nama`, `keterangan`, `stok`) VALUES
+	(2, 11, 'barang 1', 'tes 1', 10),
+	(3, 11, 'barang 2', 'tes 2', 0);
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 
 -- Dumping structure for table ragel.kategori
@@ -39,43 +42,14 @@ CREATE TABLE IF NOT EXISTS `kategori` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ragel.kategori: 1 rows
+-- Dumping data for table ragel.kategori: 2 rows
 /*!40000 ALTER TABLE `kategori` DISABLE KEYS */;
 INSERT INTO `kategori` (`id`, `nama`) VALUES
-	(1, 'Kategori 1');
+	(1, 'Kategori 1'),
+	(11, 'kategori 2');
 /*!40000 ALTER TABLE `kategori` ENABLE KEYS */;
-
--- Dumping structure for table ragel.pengadaan
-CREATE TABLE IF NOT EXISTS `pengadaan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `barang_id` int(11) NOT NULL,
-  `tanggal` datetime NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `supplier` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_barang_pengadaan` (`barang_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table ragel.pengadaan: 0 rows
-/*!40000 ALTER TABLE `pengadaan` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pengadaan` ENABLE KEYS */;
-
--- Dumping structure for table ragel.penjualan
-CREATE TABLE IF NOT EXISTS `penjualan` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `barang_id` int(11) NOT NULL,
-  `tanggal` datetime NOT NULL,
-  `jumlah` int(11) NOT NULL,
-  `buyer` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_barang_penjualan` (`barang_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table ragel.penjualan: 0 rows
-/*!40000 ALTER TABLE `penjualan` DISABLE KEYS */;
-/*!40000 ALTER TABLE `penjualan` ENABLE KEYS */;
 
 -- Dumping structure for table ragel.setting
 CREATE TABLE IF NOT EXISTS `setting` (
@@ -84,9 +58,32 @@ CREATE TABLE IF NOT EXISTS `setting` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table ragel.setting: 0 rows
+-- Dumping data for table ragel.setting: 2 rows
 /*!40000 ALTER TABLE `setting` DISABLE KEYS */;
+INSERT INTO `setting` (`id`, `value`) VALUES
+	('app_name', 'Inventory Ragel'),
+	('user_wa', '6281215992673');
 /*!40000 ALTER TABLE `setting` ENABLE KEYS */;
+
+-- Dumping structure for table ragel.transaksi
+CREATE TABLE IF NOT EXISTS `transaksi` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kode` varchar(100) NOT NULL,
+  `barang_id` int(11) NOT NULL,
+  `tanggal` datetime NOT NULL,
+  `harga` int(11) NOT NULL,
+  `jumlah` int(11) NOT NULL,
+  `mitra` varchar(255) NOT NULL,
+  `keterangan` text NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_barang_pengadaan` (`barang_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table ragel.transaksi: 0 rows
+/*!40000 ALTER TABLE `transaksi` DISABLE KEYS */;
+INSERT INTO `transaksi` (`id`, `kode`, `barang_id`, `tanggal`, `harga`, `jumlah`, `mitra`, `keterangan`) VALUES
+	(1, 'IN01', 2, '2024-01-21 00:00:00', 210000, 10, 'pt badrul', 'oke sip');
+/*!40000 ALTER TABLE `transaksi` ENABLE KEYS */;
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
