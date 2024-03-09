@@ -10,7 +10,7 @@
     <h1 class="card-title mb-9 fw-semibold">Data {{ $title }} Barang</h1>
     <div class="row">
         <div class="col-lg-12">
-            <a href="{{ url('transaksi/form') }}?type={{ $type }}" class="btn btn-primary" role="button" title="Tambah"><i class="glyphicon glyphicon-plus"></i> Tambah</a> 
+            <a href="{{ url('transaksi/form') }}?type={{ $type }}" class="btn btn-primary" role="button" title="Tambah"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
             <div class="table-responsive">
                 <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">
@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($transaksi as $k => $v)  
+                        @foreach($transaksi as $k => $v)
                         <tr>
                             <td>{{ $k +1 }}</td>
                             <td><b>#{{ $v->kode }}</b></td>

@@ -23,7 +23,7 @@ class TransaksiController extends Controller
             $comp = "<";
         }
         $transaksi = DB::select("
-            SELECT A.*, B.nama as barang_nama, C.nama as kategori_nama
+            SELECT A.*, B.nama as barang_nama, B.satuan as barang_satuan, C.nama as kategori_nama
             FROM transaksi as A
             JOIN barang as B ON A.barang_id = B.id
             JOIN kategori as C ON B.kategori_id = C.id
@@ -89,7 +89,7 @@ class TransaksiController extends Controller
             "message" => $message,
             "redirect" => url("transaksi")."?type=".$this->type
         ]);
-        
+
         return redirect(url("transaksi")."?type=".$this->type)->with("success", "Transaksi berhasil disimpan");
     }
 
@@ -161,7 +161,7 @@ class TransaksiController extends Controller
             $trx->keterangan = $keterangan;
             $trx->save();
         DB::commit();
-        
+
         return redirect(url("transaksi")."?type=".$this->type)->with("success", "Transaksi berhasil disimpan");
     }
 
@@ -187,7 +187,7 @@ class TransaksiController extends Controller
             if(count($lastData->get()) == 0){
                 return back()->with("error", "Transaksi tidak ditemukan");
             }
-            
+
             $multiplier = 1;
             if($this->type === "in"){
                 $multiplier = -1;

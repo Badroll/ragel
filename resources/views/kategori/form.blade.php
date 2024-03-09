@@ -39,7 +39,9 @@
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">{{ $button }}</button>
+                    @if($editMode)
                     <a class="btn btn-danger" id="button_form_hapus">Hapus</a>
+                    @endif
                 </form>
             </div>
         </div>
@@ -57,12 +59,12 @@
 
 @section("js")
     <script type="text/javascript">
-        
+
         $("#button_form_hapus").on("click", function(){
             $("#form_delete").submit()
         })
 
-        
+
 
     </script>
 @endsection

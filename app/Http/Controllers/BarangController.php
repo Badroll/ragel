@@ -27,20 +27,23 @@ class BarangController extends Controller
     public function create(Request $request){
         $kategori_id = $request->{"kategori_id"};
         $nama = $request->{"nama"};
+        $satuan = $request->{"satuan"};
         //$harga = $request->{"harga"};
         $keterangan = $request->{"keterangan"};
         if(!$kategori_id) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (kategori_id)");
         if(!$nama) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (nama)");
+        if(!$satuan) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (satuan)");
         //if(!$harga) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (harga)");
         if(!$keterangan) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (keterangan)");
 
         $barang = new Barang;
         $barang->kategori_id = $kategori_id;
         $barang->nama = $nama;
+        $barang->satuan = $satuan;
         //$barang->harga = $harga;
         $barang->keterangan = $keterangan;
         $barang->save();
-        
+
         return redirect(url("barang"))->with("success", "Barang berhasil disimpan");
     }
 
@@ -68,11 +71,13 @@ class BarangController extends Controller
         $id = $request->{"id"};
         $kategori_id = $request->{"kategori_id"};
         $nama = $request->{"nama"};
+        $satuan = $request->{"satuan"};
         //$harga = $request->{"harga"};
         $keterangan = $request->{"keterangan"};
         if(!$id) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (id)");
         if(!$kategori_id) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (kategori_id)");
         if(!$nama) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (nama)");
+        if(!$satuan) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (satuan)");
         //if(!$harga) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (harga)");
         if(!$keterangan) return redirect(url("barang"))->with("error", "Parameter tidak lengkap (keterangan)");
 
@@ -82,10 +87,11 @@ class BarangController extends Controller
         }
         $barang->kategori_id = $kategori_id;
         $barang->nama = $nama;
+        $barang->satuan = $satuan;
         //$barang->harga = $harga;
         $barang->keterangan = $keterangan;
         $barang->save();
-        
+
         return redirect(url("barang"))->with("success", "Barang berhasil diperbarui");
     }
 

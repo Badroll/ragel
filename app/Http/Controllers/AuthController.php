@@ -47,20 +47,23 @@ class AuthController extends Controller
             return back()->with("error", "Passsword salah");
         }
         Session::put("user", $user);
-        
+
         return redirect(url("/"))->with("success", "Selamat datang " . $user->{"nama"});
     }
 
 
     public function update(Request $request){
+        //dd($request);
+        $id = $request->{"id"};
         $nama = $request->{"nama"};
         $no_wa = $request->{"no_wa"};
         $password = $request->{"password"};
         $password_new = $request->{"password_new"};
         //dd($request);
+        if(!$id) return back()->with("error", "Parameter tidak lengkap (id)");
         if(!$nama) return back()->with("error", "Parameter tidak lengkap (nama)");
         if(!$no_wa) return back()->with("error", "Parameter tidak lengkap (no_wa)");
-        $user = User::where("no_wa", $no_wa)->first();
+        $user = User::find($id);
         if($password_new && $password_new != ""){
             if(!($password) || $password == ""){
                 return back()->with("error", "Parameter tidak lengkap (password)");
@@ -74,7 +77,7 @@ class AuthController extends Controller
         $user->no_wa = $no_wa;
         $user->save();
         Session::put("user", $user);
-        
+
         return back()->with("success", "Profil berhasil disimpan");
     }
 
