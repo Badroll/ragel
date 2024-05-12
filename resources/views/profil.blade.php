@@ -6,6 +6,7 @@
 <h3 class="text-center">Profil Saya</h3>
 <form role="form" method="POST" action="{{ url('auth/update') }}">
 	@csrf
+    <input type="hidden" name="id" value='{{ Session::get("user")->{"id"} }}'>
     <div class="mb-3">
 		<label for="nama" class="form-label">Nama</label>
 		<input type="text" class="form-control" name="nama" id="nama" aria-describedby="emailHelp" value='{{ Session::get("user")->{"nama"} }}'>

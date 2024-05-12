@@ -31,6 +31,10 @@
                                 <input type="text" class="form-control" name="nama" id="nama" @if($editMode) value="{{ $barang->nama }}" @endif>
                             </div>
                             <div class="mt-3 mb-3 col-md-12">
+                                <label for="satuan" class="form-label">Satuan</label>
+                                <input type="text" class="form-control" name="satuan" id="satuan" @if($editMode) value="{{ $barang->satuan }}" @endif>
+                            </div>
+                            <div class="mt-3 mb-3 col-md-12">
                                 <label for="kategori" class="form-label">Kategori</label>
                                 <select class="form-control" name="kategori_id" id="kategori">
                                     @foreach($ref_kategori as $k => $v)
@@ -52,7 +56,9 @@
                         </div>
                     </div>
                     <button class="btn btn-primary" type="submit">{{ $button }}</button>
+                    @if($editMode)
                     <a class="btn btn-danger" id="button_form_hapus">Hapus</a>
+                    @endif
                 </form>
             </div>
         </div>
@@ -70,12 +76,12 @@
 
 @section("js")
     <script type="text/javascript">
-        
+
         $("#button_form_hapus").on("click", function(){
             $("#form_delete").submit()
         })
 
-        
+
 
     </script>
 @endsection
