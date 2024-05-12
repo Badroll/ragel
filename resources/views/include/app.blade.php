@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Inventory Ragel</title>
-		<link rel="shortcut icon" type="image/png" href="{{ asset('assets/src/assets/images/logos/favicon.png') }}" />
+		<title>Tiga Putri</title>
+		<link rel="shortcut icon" type="image/png" href="{{ asset('assets/src/assets/images/logos/logo1.jpg') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/src/assets/css/styles.min.css') }}" />
 	</head>
 	<body>
@@ -19,7 +19,7 @@
 				<div>
 					<div class="brand-logo d-flex align-items-center justify-content-between">
 						<a href="#" class="text-nowrap logo-img">
-						<img src="{{ asset('assets/src/assets/images/logos/dark-logo.svg') }}" width="180" alt="" />
+						<img src="{{ asset('assets/src/assets/images/logos/logo1.jpg') }}" width="180" alt="" />
 						</a>
 						<div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
 							<i class="ti ti-x fs-8"></i>

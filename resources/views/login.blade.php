@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Modernize Free</title>
-		<link rel="shortcut icon" type="image/png" href="{{ asset('assets/src/assets/images/logos/favicon.png') }}" />
+		<title>Tiga Putri</title>
+		<link rel="shortcut icon" type="image/png" href="{{ asset('assets/src/assets/images/logos/logo1.jpg') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/src/assets/css/styles.min.css') }}" />
 	</head>
 	<body>
@@ -35,7 +35,7 @@
                                     @endif
                                     @yield('content')
 									<a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-									<img src="{{ asset('assets/src/assets/images/logos/dark-logo.svg') }}" width="180" alt="">
+									<img src="{{ asset('assets/src/assets/images/logos/logo1.jpg') }}" width="180" alt="">
 									</a>
 									<p class="text-center">Log in untuk akses inventory</p>
 									<form role="form" method="POST" action="{{ url('auth/login') }}">
