@@ -50,7 +50,7 @@
                                 <input type="number" class="form-control" name="harga" id="harga" @if($editMode) value="{{ $barang->harga }}" @endif>
                             </div> -->
                             <div class="mt-3 mb-3 col-md-12">
-                                <label for="keterangan" class="form-label">Keterangan</label>
+                                <label for="keterangan" class="form-label">Deskripsi</label>
                                 <textarea class="form-control" name="keterangan" id="keterangan">@if($editMode) {{ $barang->keterangan }} @endif</textarea>
                             </div>
                         </div>

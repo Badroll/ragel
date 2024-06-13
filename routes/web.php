@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\AuthController;
@@ -26,6 +27,15 @@ Route::prefix('auth')->middleware('validate')->group(function () {
     Route::get('profil', [AuthController::class, 'profil']);
     Route::post('update', [AuthController::class, 'update']);
     Route::get('logout', [AuthController::class, 'logout']);
+});
+
+Route::prefix('kontak')->middleware('validate')->group(function () {
+    Route::get('/', [KontakController::class, 'index']);
+    Route::post('create', [KontakController::class, 'create']);
+    Route::get('form', [KontakController::class, 'form']);
+    Route::get('riwayat', [KontakController::class, 'riwayat']);
+    Route::put('update', [KontakController::class, 'update']);
+    Route::delete('delete', [KontakController::class, 'delete']);
 });
 
 Route::prefix('kategori')->middleware('validate')->group(function () {

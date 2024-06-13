@@ -13,6 +13,7 @@ class Transaksi extends Model
         'harga',
         'jumlah',
         'mitra',
+        'kontak_id',
         'keterangan',
     ];
     public $timestamps = false;

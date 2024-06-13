@@ -35,9 +35,20 @@
                     <hr>
                     <div class="row mt-3  periksa-true">
                         <div class="col-md-6">
-                            <div class="mt-3 mb-3 col-md-12">
+                            <!-- <div class="mt-3 mb-3 col-md-12">
                                 <label for="kode" class="form-label">Kode</label>
                                 <input type="text" class="form-control" name="kode" id="kode" @if($editMode) value="{{ $transaksi->kode }}" @endif>
+                            </div> -->
+                            <div class="mt-3 mb-3 col-md-12">
+                                <label for="barang" class="form-label">{{ $mitra }}</label>
+                                <select class="form-control" name="kontak_id" id="barang" @if($editMode) disabled @endif>
+                                    @foreach($ref_kontak as $k => $v)
+                                        <option value="{{ $v->id }}"
+                                        @if($editMode && ($transaksi->kontak_id == $v->id)) selected @endif
+                                        >
+                                        {{ $v->nama }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="mt-3 mb-3 col-md-12">
                                 <label for="barang" class="form-label">Barang</label>
@@ -62,9 +73,9 @@
                                 <label for="tanggal" class="form-label">Tanggal</label>
                                 <input type="text" class="form-control" name="tanggal" id="tanggal" @if($editMode) value="{{ $transaksi->tanggal }}" @endif>
                             </div>
-                            <div class="mt-3 mb-3 col-md-12">
+                            <div class="mt-3 mb-3 col-md-12" style="display:none;">
                                 <label for="mitra" class="form-label">{{ $mitra }}</label>
-                                <input type="text" class="form-control" name="mitra" id="mitra" @if($editMode) value="{{ $transaksi->mitra }}" @endif>
+                                <input type="text" class="form-control" name="mitra" id="mitra" value="-">
                             </div>
                             <div class="mt-3 mb-3 col-md-12">
                                 <label for="keterangan" class="form-label">Keterangan</label>

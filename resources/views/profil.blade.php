@@ -1,7 +1,7 @@
 @extends("include.app")
 @section("content")
 <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-<img src="{{ asset('assets/src/assets/images/logos/dark-logo.svg') }}" width="180" alt="">
+<img src="{{ asset('assets/src/assets/images/logos/logo1.jpg') }}" width="180" alt="">
 </a>
 <h3 class="text-center">Profil Saya</h3>
 <form role="form" method="POST" action="{{ url('auth/update') }}">

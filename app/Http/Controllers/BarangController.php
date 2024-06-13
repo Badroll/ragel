@@ -14,9 +14,15 @@ class BarangController extends Controller
 
 
     public function index(Request $request){
+        /*
+            SELECT A.*, B.nama as kategori_nama FROM barang as A
+            JOIN kategori as B ON A.kategori_id = B.id
+            ORDER BY A.kategori_id
+        */
         $barang = DB::select("
             SELECT A.*, B.nama as kategori_nama FROM barang as A
             JOIN kategori as B ON A.kategori_id = B.id
+            ORDER BY A.kategori_id
         ", []);
 
         $data["barang"] = $barang;

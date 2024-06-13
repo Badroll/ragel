@@ -50,7 +50,7 @@
                             <td>{!! str_replace(" ", " ", tglIndo($v->tanggal, "SHORT")) !!}</td>
                             <td>{{ $v->jumlah }} x {{ idr($v->harga) }}</td>
                             <td>{{ idr($v->total) }}</td>
-                            <td>{{ $v->mitra }}</td>
+                            <td>{{ $v->kontak_nama }}</td>
                             <td>
                                 <a href="{{ url('transaksi/form') }}?type={{ $type }}&id={{ $v->id }}" class="btn btn-primary" role="button" title="Edit"><i class="glyphicon glyphicon-edit">Edit</i></a>
                             </td>

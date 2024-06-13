@@ -32,6 +32,14 @@
 								<span class="hide-menu">DATA MASTER</span>
 							</li>
 							<li class="sidebar-item">
+								<a class="sidebar-link" href="{{ url('kontak') }}" aria-expanded="false">
+								<span>
+								<i class="ti ti-address-book"></i>
+								</span>
+								<span class="hide-menu">Customer/Supplier</span>
+								</a>
+							</li>
+							<li class="sidebar-item">
 								<a class="sidebar-link" href="{{ url('kategori') }}" aria-expanded="false">
 								<span>
 								<i class="ti ti-layout-dashboard"></i>
@@ -42,7 +50,7 @@
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="{{ url('barang') }}" aria-expanded="false">
 								<span>
-								<i class="ti ti-layout-dashboard"></i>
+								<i class="ti ti-hanger-2"></i>
 								</span>
 								<span class="hide-menu">Barang</span>
 								</a>
@@ -54,7 +62,7 @@
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="{{ url('transaksi') }}?type=in" aria-expanded="false">
 								<span>
-								<i class="ti ti-article"></i>
+								<i class="ti ti-file-invoice"></i>
 								</span>
 								<span class="hide-menu">Pengadaan</span>
 								</a>
@@ -62,7 +70,7 @@
 							<li class="sidebar-item">
 								<a class="sidebar-link" href="{{ url('transaksi') }}?type=out" aria-expanded="false">
 								<span>
-								<i class="ti ti-article"></i>
+								<i class="ti ti-file-dollar"></i>
 								</span>
 								<span class="hide-menu">Penjualan</span>
 								</a>

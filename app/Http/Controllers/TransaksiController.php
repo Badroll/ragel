@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Transaksi;
 use App\Models\Barang;
+use App\Models\Kontak;
 use Session, DB;
 
 class TransaksiController extends Controller
@@ -23,10 +24,11 @@ class TransaksiController extends Controller
             $comp = "<";
         }
         $transaksi = DB::select("
-            SELECT A.*, B.nama as barang_nama, B.satuan as barang_satuan, C.nama as kategori_nama
+            SELECT A.*, B.nama as barang_nama, B.satuan as barang_satuan, C.nama as kategori_nama, D.nama as kontak_nama
             FROM transaksi as A
             JOIN barang as B ON A.barang_id = B.id
             JOIN kategori as C ON B.kategori_id = C.id
+            JOIN kontak as D ON A.kontak_id = D.id
             WHERE A.jumlah ".$comp." 0
         ", []);
         foreach($transaksi as $k => $v){
@@ -40,25 +42,29 @@ class TransaksiController extends Controller
 
 
     public function create(Request $request){
-        $kode = $request->{"kode"};
+        //$kode = $request->{"kode"};
         $barang_id = $request->{"barang_id"};
         $tanggal = $request->{"tanggal"};
         $harga = $request->{"harga"};
         $jumlah = $request->{"jumlah"};
         $mitra = $request->{"mitra"};
+        $kontak_id = $request->{"kontak_id"};
         $keterangan = $request->{"keterangan"};
-        if(!$kode) return back()->with("error", "Parameter tidak lengkap (kode)");
+        //if(!$kode) return back()->with("error", "Parameter tidak lengkap (kode)");
         if(!$barang_id) return back()->with("error", "Parameter tidak lengkap (barang_id)");
         if(!$tanggal) return back()->with("error", "Parameter tidak lengkap (tanggal)");
         if(!$harga) return back()->with("error", "Parameter tidak lengkap (harga)");
         if(!$jumlah) return back()->with("error", "Parameter tidak lengkap (jumlah)");
         if(!$mitra) return back()->with("error", "Parameter tidak lengkap (mitra)");
+        if(!$kontak_id) return back()->with("error", "Parameter tidak lengkap (kontak_id)");
         if(!$keterangan) return back()->with("error", "Parameter tidak lengkap (keterangan)");
         $menu = "Pengadaan";
         if($this->type == "out"){
             $jumlah = "-" . $jumlah;
             $menu = "Penjualan";
         }
+
+        $kode = strtoupper(md5(date("Y-m-dH:i:s")));
 
         DB::beginTransaction();
             if($this->updateStok($barang_id, $jumlah) === false){
@@ -71,6 +77,7 @@ class TransaksiController extends Controller
             $trx->harga = $harga;
             $trx->jumlah = $jumlah;
             $trx->mitra = $mitra;
+            $trx->kontak_id = $kontak_id;
             $trx->keterangan = $keterangan;
             $trx->save();
         DB::commit();
@@ -96,16 +103,20 @@ class TransaksiController extends Controller
 
     public function form(Request $request){
         $id = $request->{"id"};
+        $mitra = "supplier";
         $qry = "
             SELECT A.*, B.nama as kategori_nama
             FROM barang as A
             JOIN kategori as B ON A.kategori_id = B.id
         ";
         if($this->type == "out"){
+            $mitra = "customer";
             $qry .= "WHERE A.stok > 0";
         }
         $ref_barang = DB::select($qry, []);
+        $ref_kontak = Kontak::where("jenis", $mitra)->get();
         $data["ref_barang"] = $ref_barang;
+        $data["ref_kontak"] = $ref_kontak;
         $data["type"] = $this->type;
 
         if(!$id){
@@ -124,7 +135,7 @@ class TransaksiController extends Controller
 
     public function update(Request $request){
         $id = $request->{"id"};
-        $kode = $request->{"kode"};
+        //$kode = $request->{"kode"};
         //$barang_id = $request->{"barang_id"};
         $tanggal = $request->{"tanggal"};
         $harga = $request->{"harga"};
@@ -132,7 +143,7 @@ class TransaksiController extends Controller
         $mitra = $request->{"mitra"};
         $keterangan = $request->{"keterangan"};
         if(!$id) return back()->with("error", "Parameter tidak lengkap (id)");
-        if(!$kode) return back()->with("error", "Parameter tidak lengkap (kode)");
+        //if(!$kode) return back()->with("error", "Parameter tidak lengkap (kode)");
         //if(!$barang_id) return back()->with("error", "Parameter tidak lengkap (barang_id)");
         if(!$harga) return back()->with("error", "Parameter tidak lengkap (harga)");
         if(!$tanggal) return back()->with("error", "Parameter tidak lengkap (tanggal)");
@@ -152,7 +163,7 @@ class TransaksiController extends Controller
             // if($this->updateStok($barang_id, $jumlah) === false){
             //     return back()->with("error", "Transaksi gagal, stok barang tidak cukup");
             // }
-            $trx->kode = $kode;
+            //$trx->kode = $kode;
             //$trx->barang_id = $barang_id;
             $trx->tanggal = $tanggal;
             $trx->harga = $harga;
