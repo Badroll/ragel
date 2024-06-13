@@ -6,8 +6,40 @@
 		<title>Tiga Putri</title>
 		<link rel="shortcut icon" type="image/png" href="{{ asset('assets/src/assets/images/logos/logo1.jpg') }}" />
 		<link rel="stylesheet" href="{{ asset('assets/src/assets/css/styles.min.css') }}" />
+		<style>
+			.background-container {
+				display: flex;
+				height: 100vh;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: -1;
+			}
+			.background-image {
+				flex: 1;
+				background-size: cover;
+				background-position: center;
+			}
+			.image1 {
+				background-image: url("{{ asset('assets/src/assets/images/tigaputri/tp1.jpg') }}");
+			}
+			.image2 {
+				background-image: url("{{ asset('assets/src/assets/images/tigaputri/tp3.jpg') }}");
+			}
+			.image3 {
+				background-image: url("{{ asset('assets/src/assets/images/tigaputri/tp2.jpg') }}");
+			}
+		</style>
 	</head>
 	<body>
+
+		<div class="background-container">
+			<div class="background-image image1"></div>
+			<div class="background-image image2"></div>
+			<div class="background-image image3"></div>
+		</div>
+
 		<!--  Body Wrapper -->
 		<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
 			data-sidebar-position="fixed" data-header-position="fixed">
@@ -16,6 +48,8 @@
 				<div class="d-flex align-items-center justify-content-center w-100">
 					<div class="row justify-content-center w-100">
 						<div class="col-md-8 col-lg-6 col-xxl-3">
+
+							<!-- card -->
 							<div class="card mb-0">
 								<div class="card-body">
                                     @if(Session::get("info"))
@@ -65,6 +99,7 @@
 									</form>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
