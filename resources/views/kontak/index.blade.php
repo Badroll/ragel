@@ -4,6 +4,19 @@
     <div class="row">
         <div class="col-lg-12">
             <a href="{{ url('kontak/form') }}" class="btn btn-primary" role="button" title="Tambah"><i class="glyphicon glyphicon-plus"></i> Tambah</a> 
+            <div class="row">
+                <div class="mt-3 mb-3 col-md-6">
+                    <label for="keyword" class="form-label">Cari</label>
+                    <div class="row">
+                        <div class="mt-3 mb-3 col-md-6">
+                            <input type="text" class="form-control" placeholder="kata kunci" id="keyword" @if(isset($keyword)) value="{{ $keyword }}" @endif>
+                        </div>
+                        <div class="mt-3 mb-3 col-md-6">
+                            <button class="btn btn-primary" onclick="javascript:window.location='{{ url('kontak') }}?keyword='+document.getElementById('keyword').value">Cari</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="table-responsive">
                 <table class="table text-nowrap mb-0 align-middle">
                     <thead class="text-dark fs-4">

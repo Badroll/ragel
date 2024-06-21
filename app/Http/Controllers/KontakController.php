@@ -14,7 +14,18 @@ class KontakController extends Controller
 
 
     public function index(Request $request){
-        $kontak = Kontak::all();
+        $keyword = $request->{"keyword"};
+        if(!$keyword){
+            $kontak = Kontak::all();
+        }else{
+            $kontak = DB::select("
+                SELECT * FROM kontak
+                WHERE nama LIKE '%".$keyword."%'
+                OR jenis LIKE '%".$keyword."%'
+                OR keterangan LIKE '%".$keyword."%'
+            ");
+            $data["keyword"] = $keyword;
+        }
 
         $data["kontak"] = $kontak;
         return view("kontak.index", $data);
