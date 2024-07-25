@@ -75,6 +75,14 @@
 								<span class="hide-menu">Penjualan</span>
 								</a>
 							</li>
+							<li class="sidebar-item">
+								<a class="sidebar-link" href="{{ url('transaksi/laporan') }}?type=all&periode=s" aria-expanded="false">
+								<span>
+								<i class="ti ti-report"></i>
+								</span>
+								<span class="hide-menu">Laporan</span>
+								</a>
+							</li>
 						</ul>
 					</nav>
 					<!-- End Sidebar navigation -->

@@ -213,4 +213,31 @@ class TransaksiController extends Controller
         return redirect(url("transaksi")."?type=".$this->type)->with("success", "Transaksi berhasil dihapus");
     }
 
+
+    public function laporan(Request $request){
+        $periode = $request->{"periode"};
+        $qry = "
+            SELECT A.harga, A.jumlah, A.kode, A.tanggal, B.nama as barang_nama, C.nama as kategori_nama, D.nama as kontak_nama
+            FROM transaksi as A
+            JOIN barang as B ON A.barang_id = B.id
+            JOIN kategori as C ON B.kategori_id = C.id
+            JOIN kontak as D ON A.kontak_id = D.id
+        ";
+        if($periode == "d"){
+            $qry .= " AND (a.tanggal) LIKE '". date("Y-m-d") ."%' ";
+        }
+        else if($periode == "m"){
+            $qry .= " AND (a.tanggal) LIKE '". date("Y-m") ."%' ";
+        }
+        else if($periode == "y"){
+            $qry .= " AND (a.tanggal) LIKE '". date("Y") ."%' ";
+        }
+
+        $laporan = DB::select($qry, []);
+        $data["laporan"] = $laporan;
+        $data["periode"] = $periode;
+        //dd($data);
+        return view("transaksi.laporan", $data);
+    }
+
 }

@@ -60,4 +60,6 @@ Route::prefix('transaksi')->middleware('validate')->group(function () {
     Route::get('form', [TransaksiController::class, 'form']);
     Route::put('update', [TransaksiController::class, 'update']);
     Route::delete('delete', [TransaksiController::class, 'delete']);
+
+    Route::get('laporan', [TransaksiController::class, 'laporan']);
 });
