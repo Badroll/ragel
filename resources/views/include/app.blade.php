@@ -158,11 +158,13 @@
 							@if(Session::get("error"))
 								<div class="alert alert-danger" role="alert">
 									{!! Session::get("error") !!}
+									{{ Session::forget("error") }}
 								</div>
 							@endif
 							@if(Session::get("warning"))
 								<div class="alert alert-warning" role="alert">
 									{!! Session::get("warning") !!}
+									{{ Session::forget("warning") }}
 								</div>
 							@endif
 							@yield('content')
