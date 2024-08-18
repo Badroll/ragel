@@ -25,6 +25,26 @@ class BarangController extends Controller
             ORDER BY A.kategori_id
         ", []);
 
+        $stok0 = "";
+        $stokTipis = "";
+        foreach($barang as $k => $v){
+            $stok = $v->{"stok"};
+            if($stok == 0){
+                $stok0 .= "<br>" . $v->{"nama"};
+            }
+            else if($stok < 20){
+                $stokTipis .= "<br>" . $v->{"nama"} . " (sisa ".$stok.")";
+            }
+        }
+        $stok0 = rtrim($stok0, "<br>");
+        $stokTipis = rtrim($stokTipis, "<br>");
+        if($stok0 != ""){
+            Session::flash("error", "Terdapat barang kosong: " . $stok0);
+        }
+        if($stokTipis != ""){
+            Session::flash("warning", "Terdapat barang dengan stok menipis:" . $stokTipis);
+        }
+
         $data["barang"] = $barang;
         return view("barang.index", $data);
     }
